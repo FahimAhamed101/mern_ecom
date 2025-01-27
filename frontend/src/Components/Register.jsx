@@ -30,12 +30,12 @@ const Register = () => {
   };
 
   return (
-    <section className="h-screen flex items-center justify-center">
-      <div className="max-w-sm border shadow bg-white mx-auto p-8">
+    <section className=" flex items-center justify-center">
+      <div className=" border shadow bg-white mx-auto p-8">
         <h2 className="text-2xl font-semibold pt-5">Please Register</h2>
         <form
           onSubmit={handleLogin}
-          className=""
+            className="space-y-5 max-w-sm mx-auto pt-8"
         >
           <input
             type="text"
@@ -44,9 +44,9 @@ const Register = () => {
             placeholder="Username"
             required
             onChange={(e) => setUsername(e.target.value)}
-            className="w-full bg-gray-100 focus:outline-none p-5"
+            className="w-full bg-gray-100 focus:outline-none  "
           />
-          <input
+          <div className="m-5"> <input
             type="email"
             name="email"
             id="email"
@@ -54,7 +54,8 @@ const Register = () => {
             required
             onChange={(e) => setEmail(e.target.value)}
             className="w-full bg-gray-100 focus:outline-none px-5 py-3"
-          />
+          /></div>
+         
           <input
             type="password"
             name="password"
@@ -67,7 +68,7 @@ const Register = () => {
           {message && <p className="text-red-500">{message}</p>}
           <button
             type="submit"
-            className="w-full mt-5 bg-primary text-white hover:bg-indigo-500 font-medium py-3 rounded-md"
+            className="w-full mt-5 bg-primary text-black hover:bg-indigo-500 font-medium py-3 rounded-md"
           >
             Register
           </button>

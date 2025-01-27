@@ -16,13 +16,27 @@ const authRoutesApi = createApi({
         body: newUser,
       }),
     }),
-    
+    loginUser: builder.mutation({
+      query: (credentials) => ({
+        url: "/login",
+        method: "POST",
+        body: credentials,
+      }),
+    }),
+    logoutUser: builder.mutation({
+      query: () => ({
+        url: "/logout",
+        method: "POST",
+      }),
+    }),
    
   }),
 });
 
 export const {
   useRegisterUserMutation,
-  
+
+  useLoginUserMutation,
+  useLogoutUserMutation,
 } = authRoutesApi;
 export default authRoutesApi;
