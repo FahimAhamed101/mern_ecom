@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "./features/authRoutes/authRoutesSlice";
-import authRoutesApi from "./features/authRoutes/authRoutesApi";
+import authReducer from "./features/authRoutes/authRoutesSlice.js";
+import authRoutesApi from "./features/authRoutes/authRoutesApi.js";
 
 
 export const store = configureStore({
