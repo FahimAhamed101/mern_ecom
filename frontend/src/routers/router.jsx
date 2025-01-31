@@ -5,6 +5,8 @@ import Register from "../Components/Register";
 import Login from "../Components/Login";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
+import AddProduct from "../pages/dashboard/admin/addProduct/AddProduct";
+
 const router = createBrowserRouter([
     {
       path: "/",
@@ -30,6 +32,23 @@ const router = createBrowserRouter([
               <DashboardLayout />
             </PrivateRoute>
           ),
+          children: [
+        
+      
+            //admin routes (only accessible by admin Todo: include role fields)
+           
+            {
+              path: "add-product",
+              element: (
+                <PrivateRoute role="admin">
+                  <AddProduct />
+                </PrivateRoute>
+              ),
+            },
+           
+            
+            
+          ],
         }
       ],
     },
