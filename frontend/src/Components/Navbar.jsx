@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useLogoutUserMutation } from "../redux/features/authRoutes/authRoutesApi";
 import { logout } from "../redux/features/authRoutes/authRoutesSlice";
+import avatarImg from "../assets/avatar.png";
 
 const Navbar = () => {
  
@@ -23,7 +24,7 @@ const Navbar = () => {
   };
 
   const adminDropdownMenus = [
-    { label: "Dashboard", path: "/dashboard/admin" },
+    { label: "Dashboard", path: "/dashboard" },
     { label: "Manage Items", path: "/dashboard/manage-products" },
     { label: "All Orders", path: "/dashboard/manage-orders" },
     { label: "Add Product", path: "/dashboard/add-product" },
@@ -89,16 +90,16 @@ const Navbar = () => {
             {user && user ? (
               <>
              
-             <li>
-             <button  onClick={handleDropdownToggle} className="hover:text-primary">
-              <i className="ri-shopping-agb-line">toggle</i> 
-              
-            </button>
-                      </li>
+             <img
+                  onClick={handleDropdownToggle}
+                  src={user?.profileImage || avatarImg}
+                  alt=""
+                  className="size-6 rounded-full cursor-pointer"
+                />
 
-                {isDropdownOpen && (
-                  <div className=" mt-3 p-4 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                    <ul className="font-medium space-y-2 p-2">menu
+{isDropdownOpen && (
+                  <div className="absolute right-0 mt-3 p-4 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                    <ul className="font-medium space-y-2 p-2">
                       {dropdownMenus.map((menu, index) => (
                         <li key={index}>
                           <Link
@@ -116,7 +117,6 @@ const Navbar = () => {
                         </Link>
                       </li>
                     </ul>
-                    
                   </div>
                 )}
               </>
