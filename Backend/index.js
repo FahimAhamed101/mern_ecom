@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRoutes from "./users/user.route.js"
 import productRoutes from "./products/product.route.js"
+import uploadImage from "./utils/UploadImage.js";
+
 dotenv.config();
 import cors from "cors";
 const app = express()
@@ -18,6 +20,14 @@ app.use(express.json({ limit: "25mb" }));
 app.use(express.urlencoded({ limit: "25mb" }));
 app.use("/api/authRoutes", authRoutes);
 app.use("/api/productRoutes", productRoutes);
+
+app.post("/uploadImage", (req, res) => {
+  uploadImage(req.body.image)
+    .then((url) => res.send(url))
+    .catch((err) => res.status(500).send(err));
+});
+
+
 async function main() {
   await mongoose.connect(process.env.DB_URL);
     app.get("/", (req, res) => {
@@ -30,3 +40,4 @@ async function main() {
   app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
   });
+
