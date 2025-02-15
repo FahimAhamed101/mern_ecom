@@ -7,7 +7,7 @@
         "dest": "index.js"
       },
       {
-        "src": "/api/(.*)",
+        "src": "/api/authRoutes/(.*)",
         "dest": "index.js"
       }
     ]
