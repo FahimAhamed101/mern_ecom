@@ -8,7 +8,7 @@
       },
       {
         "src": "/api/authRoutes/(.*)",
-        "dest": "index.js"
+        "dest": "./users/user.route.js"
       }
     ]
   }
