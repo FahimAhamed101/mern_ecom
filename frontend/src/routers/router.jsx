@@ -6,7 +6,7 @@ import Login from "../Components/Login";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 import AddProduct from "../pages/dashboard/admin/addProduct/AddProduct";
-
+import ManageProduct from "../pages/dashboard/admin/manageProduct/manageProduct";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -45,7 +45,14 @@ const router = createBrowserRouter([
                 </PrivateRoute>
               ),
             },
-           
+            {
+              path: "manage-products",
+              element: (
+                <PrivateRoute role="admin">
+                  <ManageProduct />
+                </PrivateRoute>
+              ),
+            },
             
             
           ],

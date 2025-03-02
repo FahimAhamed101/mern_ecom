@@ -1,9 +1,9 @@
 import React from 'react';
-
+import TrendingProducts from '../Shop/TrendingProducts'
 const Home = () => {
   return (
     <div>
-     hello home
+      <TrendingProducts />
     </div>
   )
 }
