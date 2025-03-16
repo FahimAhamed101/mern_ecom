@@ -7,6 +7,8 @@ import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 import AddProduct from "../pages/dashboard/admin/addProduct/AddProduct";
 import ManageProduct from "../pages/dashboard/admin/manageProduct/manageProduct";
+import ShopPage from "../pages/Shop/ShopPage";
+import SingleProduct from "../pages/Shop/ProductDetails/SingleProduct";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -20,7 +22,13 @@ const router = createBrowserRouter([
           path: "/register",
           element: <Register />,
 
+        },    {
+          path: "/shop",
+          element: <ShopPage />,
         },
+        {
+          path: "/shop/:id",
+          element: <SingleProduct />, },
         {
           path: "/login",
           element: <Login />,

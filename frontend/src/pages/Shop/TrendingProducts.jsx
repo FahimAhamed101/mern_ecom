@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ProductCards from "./ProductCards";
-//import products from "../../data/products.json"
+import products from "../../data/products.json"
 import { useFetchAllProductsQuery } from "../../redux/features/products/productsApi";
 
 const TrendingProducts = () => {
