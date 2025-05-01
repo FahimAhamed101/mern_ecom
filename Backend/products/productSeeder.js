@@ -18,6 +18,7 @@ const seedProducts = async () => {
         console.error("Admin user not found");
         process.exit(1);
       }
+      console.log(adminUser._id)
       const products = [
         {
           "id": 1,

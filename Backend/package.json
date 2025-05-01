@@ -6,7 +6,8 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.9.5"
+    "mongoose": "^8.9.5",
+    "stripe": "^18.1.0"
   },
   "name": "index.js",
   "type": "module",
@@ -16,7 +17,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "seed": "node products/productSeeder.js"
-
   },
   "author": "",
   "license": "ISC",
