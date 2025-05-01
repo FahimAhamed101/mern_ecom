@@ -31,7 +31,7 @@ const SingleProduct = () => {
           </span>
           <i className="ri-arrow-right-s-line"></i>
           <span className="hover:text-primary">
-            <Link to="/shop">shop12</Link>
+            <Link to="/shop">shop</Link>
           </span>
           <i className="ri-arrow-right-s-line"></i>
           <span className="hover:text-primary">{singleProduct?.name}</span>
@@ -76,7 +76,7 @@ const SingleProduct = () => {
                 e.stopPropagation();
                 handleAddToCart(singleProduct);
               }}
-              className="mt-6 px-6 py-3 bg-primary text-black rounded-md"
+              className="mt-6 px-6 py-3 bg-primary  rounded-md"
             >
               Add to Cart
             </button>
