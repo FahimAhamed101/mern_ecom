@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET_KEY;
-import User from "../models/user.model.js";
+import User from "../users/user.model.js";
 const generateToken = async (userId) => {
     try {
         const user = await User.findById(userId);
