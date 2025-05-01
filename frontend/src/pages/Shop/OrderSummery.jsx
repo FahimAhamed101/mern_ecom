@@ -1,6 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../../redux/features/cart/cartSlice";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+import { getBaseUrl } from "../../utils/baseURL";
 const OrderSummery = () => {
   const dispatch = useDispatch();
   const { products, selectedItems, totalPrice } = useSelector(
@@ -16,6 +19,36 @@ const OrderSummery = () => {
     dispatch(clearCart());
   };
 
+  // handle make payment
+  const makePayment = async (e) => {
+    const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PK);
+    //console.log(stripe)
+    const body = {
+      products: products,
+      userId: user?._id,
+    };
+    console.log(body)
+    try {
+      const response = await axios.post(
+        `${getBaseUrl()}/api/orderRoutes/create-checkout-session`,
+        body,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const result = stripe.redirectToCheckout({
+        sessionId: response.data.id,
+      });
+      if (result.error) {
+        console.error("Error redirecting to checkout", result.error);
+        return;
+      }
+    } catch (error) {
+      console.error("Error creating checkout", error);
+    }
+  };
   
   return (
     <>
@@ -41,7 +74,10 @@ const OrderSummery = () => {
           </button>
           {/* product checkout */}
           <button
-           
+           onClick={(e) => {
+            e.stopPropagation(); // amra jetate click korbo thi setai ate kaj kore onno state gola na.
+            makePayment();
+          }}
             className="bg-green-600 px-3 py-1.5 text-white  mt-2 rounded-md flex justify-between items-center"
           >
             <span className="mr-2">Proceed Checkout</span>
