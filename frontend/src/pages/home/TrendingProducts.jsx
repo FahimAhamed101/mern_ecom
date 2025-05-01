@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ProductCards from "../shop/ProductCards";
+import ProductCards from "../Shop/ProductCards";
 import { useFetchAllProductsQuery } from "../../redux/features/products/productsApi";
 
 const TrendingProducts = () => {
