@@ -4,7 +4,7 @@ import RatingStars from "../../../Components/RatingStars";
 import { useDispatch } from "react-redux";
 import { useFetchProductByIdQuery } from "../../../redux/features/products/productsApi";
 import { addToCart } from "../../../redux/features/cart/cartSlice";
-import ReviewsCard from "../Reviews/reviewsCard";
+import ReviewsCard from "../Reviews/ReviewsCard";
 
 const SingleProduct = () => {
   const { id } = useParams();
