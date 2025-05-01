@@ -1,30 +1,27 @@
 import React from "react";
-import { useLogoutUserMutation } from "../../redux/features/authRoutes/authRoutesApi";
+import { Link, NavLink, useNavigate } from "react-router";
+import { useLogoutUserMutation } from "../../redux/features/auth/authApi";
 import { useDispatch } from "react-redux";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { logout } from "../../redux/features/authRoutes/authRoutesSlice";
+import { logout } from "../../redux/features/auth/authSlice";
 
 const navItems = [
-    { path: "/dashboard/", label: "Dashboard" },
-    { path: "/dashboard/add-product", label: "Add Product" },
-    { path: "/dashboard/manage-products", label: "Manage Products" },
-    { path: "/dashboard/users", label: "Users" },
-    { path: "/dashboard/manage-orders", label: "Manage Orders" },
-  ];
-
+  { path: "/dashboard/admin", label: "Dashboard" },
+  { path: "/dashboard/add-product", label: "Add Product" },
+  { path: "/dashboard/manage-products", label: "Manage Products" },
+  { path: "/dashboard/users", label: "Users" },
+  { path: "/dashboard/manage-orders", label: "Manage Orders" },
+];
 const AdminDashboard = () => {
     const [logoutUser] = useLogoutUserMutation();
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const handleLogout = async () => {
         try {
             await logoutUser().unwrap();
-            alert('logged out successfully');
             dispatch(logout());
             navigate("/")
         } catch (error) {
-            console.error('Failed to log out', error);
+            console.error("Error to logout", error)
         }
     }
   return (
@@ -34,18 +31,19 @@ const AdminDashboard = () => {
           <Link to="/">
             Lebaba<span>.</span>
           </Link>
-          <p className="text-xs italic">User Dashboard</p>
+          <p className="text-xs italic">Admin dashboard</p>
         </div>
+
         <hr className="mt-5" />
+
         <ul className="space-y-5 pt-5">
-          {navItems.map((item) => (
-            <li key={item.path}>
+          {navItems.map((item, index) => (
+            <li key={index}>
               <NavLink
-                className={({ isActive }) =>
-                  isActive ? "text-blue-600 font-bold" : "text-black"
-                }
-                end
                 to={item.path}
+                className={({ isActive }) =>
+                  isActive ? "active font-semibold" : ""
+                }
               >
                 {item.label}
               </NavLink>
@@ -53,11 +51,12 @@ const AdminDashboard = () => {
           ))}
         </ul>
       </div>
+      {/* logout */}
       <div className="mb-3">
-        <hr className="mb-3" />
+        <hr className="mb-3 " />
         <button
           onClick={handleLogout}
-          className="text-white bg-primary font-medium px-5 py-1 rounded-sm"
+          className="text-white bg-red-500 font-medium px-5 py-1 rounded-sm"
         >
           Logout
         </button>

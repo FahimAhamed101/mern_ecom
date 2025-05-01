@@ -1,37 +1,39 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { getBaseUrl } from "../../../utils/baseURL";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { getBaseUrl } from '../../../utils/getbaseurl'
 
-export const reviewApi = createApi({
-  reducerPath: "reviewApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${getBaseUrl()}/api/reviewRoutes`,
-    credentials: "include",
-  }),
-  tagTypes: ["Reviews"],
-  endpoints: (builder) => ({
-    postReview: builder.mutation({
-      query: (reviewData) => ({
-        url: "/post-review",
-        method: "POST",
-        body: reviewData,
-      }),
-      invalidatesTags: (result, error, { postId }) => [
-        { type: "Reviews", postId },
-      ],
-    }),
-    getReviewsCount: builder.query({
-      query: () => ({
-        url: "/total-reviews",
-      })
-    }),
-    getReviewsByUserId: builder.query({
-      query: (userId) => ({
-        url: `/${userId}`
-      }),
-      providesTags: (result) => result ? [{type: "Reviews", id: result[0]?.email}] : []
-    }),
-  }),
-});
 
-export const {usePostReviewMutation, useGetReviewsByUserIdQuery, useGetReviewsCountQuery} = reviewApi;
-export default reviewApi;
+const reviewsApi = createApi({
+    reducerPath: 'reviewsApi',
+    baseQuery: fetchBaseQuery({
+        baseUrl: `${getBaseUrl()}/api/reviews`,
+         credentials: 'include'
+    }),
+    tagTypes: ["Reviews"],
+    endpoints: (builder) =>({
+        //post review
+        postAReview: builder.mutation({
+            query: (reviewData) =>({
+                url: '/post-review',
+                method: 'POST',
+                body: reviewData
+            }),
+            invalidatesTags: (result, error, {postId}) => [{type: "Reviews", id:postId }]
+        }),
+        //get review counts 
+        getReviewsCount: builder.query({
+            query: () => ({
+                url: "/total-reviews"
+            })
+        }),
+        //get review data for user
+        getReviewByUserId: builder.query({
+            query: (userId) => ({
+                url: `/${userId}`
+            }),
+            providesTags: (result) => result ? [{type: "Reviews", id: result[0]?.email}] : []
+        })
+    })
+})
+
+export const {useGetReviewByUserIdQuery,useGetReviewsCountQuery,usePostAReviewMutation} = reviewsApi;
+export default reviewsApi

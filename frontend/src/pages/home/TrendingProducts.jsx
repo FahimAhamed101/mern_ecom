@@ -1,25 +1,11 @@
 import React, { useState } from "react";
-import ProductCards from "../Shop/ProductCards";
-import { useFetchAllProductsQuery } from "../../redux/features/products/productsApi";
-
+import ProductCards from "../shop/ProductCards";
+import products from "../../data/products.json";
 const TrendingProducts = () => {
   const [visibleProducts, setVisibleProducts] = useState(8);
   const loadMoreProducts = () => {
     setVisibleProducts((prvCount) => prvCount + 4);
   };
-  const [currentPage, setCurrentPage] = useState(1);
-  const [ProductsPerPage] = useState(8);
-
-
-  const {
-    data: { products = [], totalPages, totalProducts } = {},
-    error,
-    isLoading,
-  } = useFetchAllProductsQuery({
-  
-    page: currentPage,
-    limit: ProductsPerPage,
-  });
   return (
     <section className="section__container product__container">
       <h2 className="section__header">Trending Products</h2>

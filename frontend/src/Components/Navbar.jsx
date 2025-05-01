@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router";
 import avatarImg from "../assets/avatar.png";
-import { logout } from "../redux/features/authRoutes/authRoutesSlice";
-import { useLogoutUserMutation } from "../redux/features/authRoutes/authRoutesApi";
-import CartModal from "../pages/Shop/CartModal";
+import { logout } from "../redux/features/auth/authSlice";
+import { useLogoutUserMutation } from "../redux/features/auth/authApi";
+import CartModal from "../pages/shop/CartModal";
 
 const Navbar = () => {
   //addtocart product

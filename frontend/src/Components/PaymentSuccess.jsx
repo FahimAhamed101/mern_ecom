@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Loading from './Loading';
 import TimelineStep from './TimelineStep';
-import { getBaseUrl } from '../utils/baseURL';
+import { getBaseUrl } from '../utils/getbaseurl';
 
 const steps = [
   {

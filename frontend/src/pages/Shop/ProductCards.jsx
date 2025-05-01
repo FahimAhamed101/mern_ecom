@@ -1,5 +1,5 @@
 import React from "react";
-import RatingStar from "../../Components/RatingStars";
+import RatingStar from "../../components/RatingStar";
 import { Link } from "react-router";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice";

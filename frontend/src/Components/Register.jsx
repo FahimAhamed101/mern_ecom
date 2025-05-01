@@ -1,89 +1,53 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useRegisterUserMutation } from "../redux/features/authRoutes/authRoutesApi";
+
+import { Link, useNavigate } from "react-router"
+import { useForm } from "react-hook-form"
+import { useRegisterUserMutation } from "../redux/features/auth/authApi"
+import { useState } from "react"
 
 const Register = () => {
-  const [message, setMessage] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const [message ,setMessage]=useState('')
 
-  const [registerUser, { isLoading: registerLoading }] =
-    useRegisterUserMutation();
-  const navigate = useNavigate();
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    const data = {
-      username,
-      email,
-      password,
-    };
-
-    try {
-      await registerUser(data).unwrap();
-      alert("Registration Successful");
-      navigate("/login");
-    } catch (error) {
-      setMessage("Registration Failed");
-    }
-  };
-
+      const {register,handleSubmit,formState: { errors },} = useForm()
+    const [registerUser,{isLoading}] = useRegisterUserMutation()
+    const navigate  = useNavigate()
+      const onSubmit = async(data) => {
+        //console.log(data)
+        try {
+          const response = await registerUser(data).unwrap()
+          console.log(response)
+          alert("Registration successful!")
+          navigate('/login')
+        } catch (error) {
+          setMessage("Registration failed",error)
+        }
+      }
   return (
-    <section className=" flex items-center justify-center">
-      <div className=" border shadow bg-white mx-auto p-8">
-        <h2 className="text-2xl font-semibold pt-5">Please Register</h2>
-        <form
-          onSubmit={handleLogin}
-            className="space-y-5 max-w-sm mx-auto pt-8"
-        >
-          <input
-            type="text"
-            name="username"
-            id="username"
-            placeholder="Username"
-            required
-            onChange={(e) => setUsername(e.target.value)}
-            className="w-full bg-gray-100 focus:outline-none px-5 py-3 "
-          />
-          <div className=""> <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Email Address"
-            required
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full bg-gray-100 focus:outline-none px-5 py-3"
-          /></div>
-         
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full bg-gray-100 focus:outline-none px-5 py-3"
-          />
-          {message && <p className="text-red-500">{message}</p>}
-          <button
-            type="submit"
-            className="w-full mt-5 bg-primary text-black hover:bg-indigo-500 font-medium py-3 rounded-md"
-          >
-            Register
-          </button>
+    <section className="h-screen flex items-center justify-center p-2">
+    <div className="bg-white shadow p-8 max-w-sm">
+      <h2 className="text-2xl font-semibold pt-5">Please Register!</h2>
+      <form  onSubmit={handleSubmit(onSubmit)} className="max-w-sm space-y-3 mx-auto pt-6">
+      <input
+        {...register("username", { required: true })} 
+         type="text" placeholder="User name" required className="w-full bg-gray-100 focus:outline-none px-5  py-3"/>
+         {errors.username && <p className="text-red-500 text-sm">username  is required</p>}
+        <input
+        {...register("email", { required: true })} 
+         type="email" placeholder="Email" required className="w-full bg-gray-100 focus:outline-none px-5  py-3"/>
+         {errors.email && <p className="text-red-500 text-sm">Email  is required</p>}
+        <input
+        {...register("password", { required: true })} 
+         type="password" placeholder="Password" required className="w-full bg-gray-100 focus:outline-none px-5  py-3"/>
+         {errors.password && <p className="text-red-500 text-sm">Password is required</p>}
+        
+         {
+            message && <p className="text-red-500">Your given info is not valid</p>
+          }
+        <button className="w-full mt-2 text-white bg-[#ed3849] hover:bg-[#ed3849]/90 font-medium py-3 rounded-md ">Register</button>
+      </form>
+      <div className="my-5 text-center italic text-sm"> Have an account? Please <Link to={'/login'} className="text-red-700 px-1 cursor-pointer underline">Login</Link>here.</div>
+    </div>
+  </section>
+  )
+}
 
-          <p className="my-5 italic text-sm text-center">
-            Already have an account?{" "}
-            <Link to="/login" className="underline text-red-500">
-              Login{" "}
-            </Link>
-            here.
-          </p>
-        </form>
-      </div>
-    </section>
-  );
-};
-
-export default Register;
+export default Register
