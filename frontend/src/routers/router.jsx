@@ -6,7 +6,7 @@ import Login from "../Components/Login";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 import AddProduct from "../pages/dashboard/admin/addProduct/AddProduct";
-import ManageProduct from "../pages/dashboard/admin/manageProduct/manageProduct";
+import ManageProduct from "../pages/dashboard/admin/ManageProduct";
 import ShopPage from "../pages/Shop/ShopPage";
 import SingleProduct from "../pages/Shop/ProductDetails/SingleProduct";
 import PaymentSuccess from "../Components/PaymentSuccess";

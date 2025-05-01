@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import {
   useDeleteProductMutation,
   useFetchAllProductsQuery,
-} from "../../../../redux/features/products/productsApi";
-import { formatDate } from "../../../../utils/formatDate";
+} from "../../../redux/features/products/productsApi";
+import { formatDate } from "../../../utils/formatDate";
 import { Link } from "react-router-dom";
 
 const ManageProduct = () => {
