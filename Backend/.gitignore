@@ -22,4 +22,4 @@ env
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+*.sw?.env
