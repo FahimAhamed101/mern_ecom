@@ -44,9 +44,9 @@ const Register = () => {
             placeholder="Username"
             required
             onChange={(e) => setUsername(e.target.value)}
-            className="w-full bg-gray-100 focus:outline-none  "
+            className="w-full bg-gray-100 focus:outline-none px-5 py-3 "
           />
-          <div className="m-5"> <input
+          <div className=""> <input
             type="email"
             name="email"
             id="email"
