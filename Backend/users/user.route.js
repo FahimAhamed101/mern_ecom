@@ -5,7 +5,7 @@ import generateToken from "../middlewares/generateToken.js";
 
 router.post("/register", async (req, res) => {
     try {
-      const { username, email, password } = req.body;
+      const { username, email, password} = req.body;
       const user = new User({ username, email, password });
       await user.save();
       res.status(201).send({ message: "User registered successfully" });

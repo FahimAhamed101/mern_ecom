@@ -3,37 +3,32 @@ import mongoose from "mongoose";
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
+        required: true
     },
-    category: {
-        type: String,
-    },
-    description: {
-        type: String,
-    },
+    category: String,
+    description: String,
     price: {
         type: Number,
-        required: true,
+        required: true
     },
-    oldPrice: {
-        type: Number,
-    },
+    oldPrice: Number,
     image: {
         type: String,
+        required: true
     },
-    color: {
-        type: String,
-    },
-    ratings: {
+    color: String,
+    rating: {
         type: Number,
-        default: 0,
+        default: 0
     },
     author: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User',
+        required: true
     }
-});
+}, {
+    timestamps: true
+})
 
 const Products = mongoose.model("Product", productSchema);
 export default Products;
