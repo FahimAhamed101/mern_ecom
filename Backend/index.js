@@ -9,12 +9,11 @@ import reviewsRoutes from "./reviews/review.route.js"
 dotenv.config();
 import cors from "cors";
 const app = express()
-app.use(
-  cors({
-    origin: ["http://localhost:5173","https://reactnodeshop.vercel.app"],
-    credentials: true,
-  })
-);
+
+app.use(cors({
+  origin:['http://localhost:5173','https://reactnodeshop.vercel.app'],
+  credentials:true   //  credentials releted joto jinish ase seta jate kaj kore example token
+}))
 const port = process.env.PORT || 5000;
 
 app.use(express.json({ limit: "25mb" }));
