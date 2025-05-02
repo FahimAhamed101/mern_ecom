@@ -11,11 +11,12 @@ const TrendingProducts = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const {data:productsData={},error,isLoading} = useFetchAllProdutsQuery({
     
+    
     page: currentPage,
-    limit: setVisibleProducts
+    
 
   })
-  //console.log(productsData?.data)
+  console.log(productsData?.data)
 
   //loading
   if(isLoading) return <Loading/>
