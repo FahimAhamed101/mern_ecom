@@ -5,6 +5,7 @@ import authRoutes from "./users/user.route.js"
 import productRoutes from "./products/product.route.js"
 import uploadImage from "./utils/UploadImage.js";
 import orderRoutes from "./orders/order.route.js"
+import reviewsRoutes from "./reviews/review.route.js"
 dotenv.config();
 import cors from "cors";
 const app = express()
@@ -21,7 +22,7 @@ app.use(express.urlencoded({ limit: "25mb" }));
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
-
+app.use('/api/reviews',reviewsRoutes)
 
 app.post("/uploadImage", (req, res) => {
   uploadImage(req.body.image)

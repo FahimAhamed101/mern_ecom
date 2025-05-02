@@ -1,7 +1,7 @@
 import Products from "./products.model.js";
 import express from "express";
 const router = express.Router();
-import Reviews from "./reviews.model.js";
+import Reviews from "../reviews/reviews.model.js";
 import verifyAdmin from "../middlewares/verifyAdmin.js";
 import verifyToken from "../middlewares/verifyToken.js";
 
